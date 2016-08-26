@@ -1,0 +1,26 @@
+<table style="width:100%">
+  {% for question in questions %}
+<tr>
+<td>{{ question.question_text }}</td>
+
+{% for choice in question.choice_set.all %}
+    <td>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if questions.has_previous %}
+            <a href="?page={{ questions.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
+        </span>
+
+        {% if questions.has_next %}
+            <a href="?page={{ questions.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>

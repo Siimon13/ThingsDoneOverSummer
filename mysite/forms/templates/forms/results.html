@@ -1,0 +1,11 @@
+<table style="width:100%">
+  {% for question in QuestionC %}
+<tr>
+<td>{{ question.question_text }}</td>
+
+{% for choice in question.choice_set.all %}
+    <td>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
